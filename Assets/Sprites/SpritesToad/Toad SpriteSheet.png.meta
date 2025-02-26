@@ -1,0 +1,781 @@
+fileFormatVersion: 2
+guid: 8fa0dc37e4f0fff44ac70d1b346e4ba6
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 16
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Toad_Idle
+      rect:
+        serializedVersion: 2
+        x: 11
+        y: 93
+        width: 12
+        height: 16
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ec9dd6c76cfc6d04c88ac30f60be5124
+      internalID: 437477450
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Toad_Crouch
+      rect:
+        serializedVersion: 2
+        x: 47
+        y: 93
+        width: 14
+        height: 14
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 76060305f051db346bf9c73e1a497820
+      internalID: 99943627
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Toad_Walk1
+      rect:
+        serializedVersion: 2
+        x: 83
+        y: 93
+        width: 15
+        height: 16
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 87c0d30b456dfa54baa5c27503ca1b4b
+      internalID: -127092805
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Toad_Walk2
+      rect:
+        serializedVersion: 2
+        x: 118
+        y: 93
+        width: 12
+        height: 16
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9537c47c71de460488a37cca29ae45f1
+      internalID: 1638312552
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Toad_Walk3
+      rect:
+        serializedVersion: 2
+        x: 151
+        y: 93
+        width: 13
+        height: 15
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 270ccaf4d4e701743b13499bd0e73398
+      internalID: 422108101
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Toad_Skid
+      rect:
+        serializedVersion: 2
+        x: 188
+        y: 93
+        width: 14
+        height: 16
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 81d0eb86fbbf5be40a56357a007cb5e5
+      internalID: 1978730303
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Toad_Jump
+      rect:
+        serializedVersion: 2
+        x: 223
+        y: 93
+        width: 16
+        height: 16
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 62cf414df629cde44b59d17f5b1f2178
+      internalID: 79647312
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Toad_Climb1
+      rect:
+        serializedVersion: 2
+        x: 263
+        y: 93
+        width: 13
+        height: 16
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3b025923e0ad33349b66c4c741e0373d
+      internalID: 1550224088
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Toad_Climb2
+      rect:
+        serializedVersion: 2
+        x: 297
+        y: 93
+        width: 12
+        height: 15
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7e2c0dcc5284d5e479e0edefa8f8ac85
+      internalID: 1025400279
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ToadM_Idle
+      rect:
+        serializedVersion: 2
+        x: 9
+        y: 47
+        width: 16
+        height: 29
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1b6faa6242d871441b7de4e516553767
+      internalID: 674369093
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ToadM_Crouch
+      rect:
+        serializedVersion: 2
+        x: 46
+        y: 47
+        width: 16
+        height: 22
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ceddf45ceb704404a89d8d11f57b3dfd
+      internalID: -97930289
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ToadM_Walk1
+      rect:
+        serializedVersion: 2
+        x: 83
+        y: 47
+        width: 16
+        height: 28
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f156b535812345d409c461fbaecf249d
+      internalID: 643221113
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ToadM_Walk2
+      rect:
+        serializedVersion: 2
+        x: 116
+        y: 47
+        width: 15
+        height: 29
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9967f573c699e07498ddf7aa779970af
+      internalID: 236811803
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ToadM_Walk3
+      rect:
+        serializedVersion: 2
+        x: 149
+        y: 47
+        width: 16
+        height: 30
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5656d93af5c916744b927e65f9b189f3
+      internalID: -234518091
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ToadM_Skid
+      rect:
+        serializedVersion: 2
+        x: 186
+        y: 47
+        width: 16
+        height: 30
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2eb84d03e58d71a4bbf65e2778b41fe2
+      internalID: 483314852
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ToadM_Jump
+      rect:
+        serializedVersion: 2
+        x: 223
+        y: 48
+        width: 16
+        height: 30
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2c58eb33b0f76cd4aae07e59fd7ecadf
+      internalID: 1480940564
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ToadM_Climb1
+      rect:
+        serializedVersion: 2
+        x: 261
+        y: 50
+        width: 15
+        height: 26
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e6881d28cddae9940b667c0e493966e8
+      internalID: 494732382
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ToadM_Climb2
+      rect:
+        serializedVersion: 2
+        x: 294
+        y: 49
+        width: 16
+        height: 27
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: db7898531e8fac441a51ab4ec8e6a644
+      internalID: 843804649
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ToadF_Idle
+      rect:
+        serializedVersion: 2
+        x: 9
+        y: 1
+        width: 16
+        height: 29
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c4d24b727446ed54dba8cea3c6cfe4aa
+      internalID: 1291270678
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ToadF_Crouch
+      rect:
+        serializedVersion: 2
+        x: 46
+        y: 1
+        width: 16
+        height: 22
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c0253ce1e4c14524390c3396e66a94fd
+      internalID: -1993007349
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ToadF_Walk1
+      rect:
+        serializedVersion: 2
+        x: 83
+        y: 1
+        width: 16
+        height: 28
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 98412656674938a4dad27448db2616e1
+      internalID: -983786945
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ToadF_Walk2
+      rect:
+        serializedVersion: 2
+        x: 116
+        y: 1
+        width: 15
+        height: 29
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 79115bea28795904ebea9c7c4b7722f8
+      internalID: -1186556261
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ToadF_Walk3
+      rect:
+        serializedVersion: 2
+        x: 149
+        y: 1
+        width: 16
+        height: 30
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ec69d8e860a3b3a4f853c017f810cae1
+      internalID: -1169286340
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ToadF_Skid
+      rect:
+        serializedVersion: 2
+        x: 186
+        y: 1
+        width: 16
+        height: 30
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 67b3777691750dc46805642a3d986619
+      internalID: 216210634
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ToadF_Jump
+      rect:
+        serializedVersion: 2
+        x: 223
+        y: 2
+        width: 16
+        height: 30
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: df91800043d60444e83636c9c2997556
+      internalID: -1833342345
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ToadF_Climb1
+      rect:
+        serializedVersion: 2
+        x: 261
+        y: 4
+        width: 15
+        height: 26
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 383fd8e93042b2445936afc4a431817a
+      internalID: 1967751559
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ToadF_Climb2
+      rect:
+        serializedVersion: 2
+        x: 294
+        y: 3
+        width: 16
+        height: 27
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f0b8f6290ee4e344f85aad0c6cca6865
+      internalID: 2044883054
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      Toad SpriteSheet_0: 1640097751
+      Toad SpriteSheet_1: 421089398
+      Toad SpriteSheet_10: -719823983
+      Toad SpriteSheet_11: -243253379
+      Toad SpriteSheet_12: -2031336622
+      Toad SpriteSheet_13: -1388591194
+      Toad SpriteSheet_14: 1347687569
+      Toad SpriteSheet_15: -237310592
+      Toad SpriteSheet_16: 947721067
+      Toad SpriteSheet_17: 1958071771
+      Toad SpriteSheet_18: 666111296
+      Toad SpriteSheet_19: 1267966037
+      Toad SpriteSheet_2: 1421328334
+      Toad SpriteSheet_20: 1851296895
+      Toad SpriteSheet_21: 941933206
+      Toad SpriteSheet_22: -358695952
+      Toad SpriteSheet_23: -2038929641
+      Toad SpriteSheet_3: -126061640
+      Toad SpriteSheet_33: 522412029
+      Toad SpriteSheet_34: 662422367
+      Toad SpriteSheet_35: 328912248
+      Toad SpriteSheet_36: 599736124
+      Toad SpriteSheet_37: 37511269
+      Toad SpriteSheet_38: 298496281
+      Toad SpriteSheet_39: -1392567024
+      Toad SpriteSheet_4: -903674226
+      Toad SpriteSheet_40: 716322708
+      Toad SpriteSheet_41: -2112986560
+      Toad SpriteSheet_42: -1724235881
+      Toad SpriteSheet_43: 544324763
+      Toad SpriteSheet_44: 1297405203
+      Toad SpriteSheet_45: -1940209104
+      Toad SpriteSheet_46: 2029449435
+      Toad SpriteSheet_47: -1614088510
+      Toad SpriteSheet_48: -349560440
+      Toad SpriteSheet_49: 208453399
+      Toad SpriteSheet_5: -1016774871
+      Toad SpriteSheet_50: 1711694626
+      Toad SpriteSheet_51: -1599370489
+      Toad SpriteSheet_52: -1452965748
+      Toad SpriteSheet_53: -278576732
+      Toad SpriteSheet_54: -1989034299
+      Toad SpriteSheet_55: -1084341152
+      Toad SpriteSheet_56: -2049331591
+      Toad SpriteSheet_6: 1578789064
+      Toad SpriteSheet_66: 1892285382
+      Toad SpriteSheet_67: -1112858959
+      Toad SpriteSheet_68: -1433062681
+      Toad SpriteSheet_69: 1119315953
+      Toad SpriteSheet_7: 1454290085
+      Toad SpriteSheet_70: -860316795
+      Toad SpriteSheet_71: 1595133228
+      Toad SpriteSheet_72: -793378155
+      Toad SpriteSheet_73: 185557594
+      Toad SpriteSheet_74: 1957758553
+      Toad SpriteSheet_75: -101214808
+      Toad SpriteSheet_76: -1574566585
+      Toad SpriteSheet_77: -854900853
+      Toad SpriteSheet_78: -1097093580
+      Toad SpriteSheet_79: 1815097804
+      Toad SpriteSheet_8: 1157887460
+      Toad SpriteSheet_80: -679085106
+      Toad SpriteSheet_81: -569455938
+      Toad SpriteSheet_82: 1289611976
+      Toad SpriteSheet_83: 1532868866
+      Toad SpriteSheet_84: -1882496923
+      Toad SpriteSheet_85: -1093827135
+      Toad SpriteSheet_86: 108414772
+      Toad SpriteSheet_87: 2112963162
+      Toad SpriteSheet_88: -1891568704
+      Toad SpriteSheet_89: 1811569866
+      Toad SpriteSheet_9: -1400927451
+      Toad SpriteSheet_99: 1804792927
+      ToadF_Climb1: 1967751559
+      ToadF_Climb2: 2044883054
+      ToadF_Crouch: -1993007349
+      ToadF_Idle: 1291270678
+      ToadF_Jump: -1833342345
+      ToadF_Skid: 216210634
+      ToadF_Walk1: -983786945
+      ToadF_Walk2: -1186556261
+      ToadF_Walk3: -1169286340
+      ToadM_Climb1: 494732382
+      ToadM_Climb2: 843804649
+      ToadM_Crouch: -97930289
+      ToadM_Idle: 674369093
+      ToadM_Jump: 1480940564
+      ToadM_Skid: 483314852
+      ToadM_Walk1: 643221113
+      ToadM_Walk2: 236811803
+      ToadM_Walk3: -234518091
+      Toad_Climb1: 1550224088
+      Toad_Climb2: 1025400279
+      Toad_Crouch: 99943627
+      Toad_Idle: 437477450
+      Toad_Jump: 79647312
+      Toad_Skid: 1978730303
+      Toad_Walk1: -127092805
+      Toad_Walk2: 1638312552
+      Toad_Walk3: 422108101
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
