@@ -27,6 +27,7 @@ public class ToadAnimator : MonoBehaviour
         this.animator.SetFloat("VelocidadY", this.rb.velocity.y);
         animator.SetBool("EnSuelo", toadController.estaEnSuelo);
         animator.SetBool("Agachado", toadController.agachado);
+        animator.SetBool("Muerto", toadController.muerto);
 
         if (direction != 0 && Mathf.Sign(direction) != Mathf.Sign(rb.velocity.x))
         {

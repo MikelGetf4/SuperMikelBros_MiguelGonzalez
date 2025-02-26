@@ -1,8 +1,9 @@
+using Assets.Scripts;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ToadController : MonoBehaviour
+public class ToadController : MonoBehaviour, IToad
 {
     private float direction;
     private Rigidbody2D rb;
@@ -26,6 +27,9 @@ public class ToadController : MonoBehaviour
 
     public bool estaEnSuelo;
     public bool agachado;
+    public bool muerto = false;
+
+    private ToadStatus estado = ToadStatus.Small;
 
 
     private void Awake()
@@ -33,6 +37,10 @@ public class ToadController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
     }
 
+    private void Start()
+    {
+        muerto = false;
+    }
 
     private void Update()
     {
@@ -194,14 +202,40 @@ public class ToadController : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Muerte"))
         {
-            TakeDamage();
+            Damagable();
         }
     }
 
-    private void TakeDamage()
+    public void Damagable()
     {
-        Debug.Log("Toad... ha muerto");
+        switch (this.estado)
+        {
+            case ToadStatus.Small:
+                Debug.Log("Toad... ha muerto");
+                Death();
+                break;
+            case ToadStatus.Mushroom:
+                estado = ToadStatus.Mushroom;
+                break;
+            case ToadStatus.Flower:
+                estado = ToadStatus.Mushroom;
+                break;
+        }
     }
 
+    private void Death()
+    {
+        muerto = true;
 
+
+        
+    }
+
+}
+
+public enum ToadStatus
+{
+    Small,
+    Mushroom,
+    Flower
 }
