@@ -29,21 +29,40 @@ public class ToadController : MonoBehaviour
     public bool agachado;
     public bool muerto = false;
 
-    private ToadStatus estado = ToadStatus.Small;
+    public ToadStatus estado;
+    private SpriteRenderer spriteRenderer;
+    private bool puedeActivarPowerUp = true;
 
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        spriteRenderer = rb.GetComponent<SpriteRenderer>();
     }
 
     private void Start()
     {
         muerto = false;
+        this.estado = ToadStatus.Small;
     }
 
     private void Update()
     {
+        switch (this.estado)
+        {
+            case ToadStatus.Small:
+                spriteRenderer.color = Color.green;
+                break;
+
+            case ToadStatus.Mushroom:
+                spriteRenderer.color = Color.blue;
+                break;
+
+            case ToadStatus.Flower:
+                spriteRenderer.color = Color.red;
+                break;
+        }
+
         this.direction = Input.GetAxisRaw("Horizontal");
         // Mantener isRunning en true si está corriendo o si está en el aire.
         if (!estaEnSuelo)
@@ -244,8 +263,35 @@ public class ToadController : MonoBehaviour
         rb.gravityScale = 2f; // Ajusta según la gravedad normal del juego
 
     }
+    public void PowerUp()
+    {
+        if (!puedeActivarPowerUp) return; // Evita que se active antes de 1 segundo
 
+        puedeActivarPowerUp = false; // Desactiva la activación temporalmente
+        StartCoroutine(ResetPowerUpCooldown()); // Inicia el cooldown
+
+        switch (this.estado)
+        {
+            case ToadStatus.Small:
+                this.estado = ToadStatus.Mushroom;
+                Debug.Log("Ahora eres grande");
+                break;
+            case ToadStatus.Mushroom:
+                this.estado = ToadStatus.Flower;
+                Debug.Log("Ahora eres de fuego");
+                break;
+            case ToadStatus.Flower:
+                break;
+        }
+    }
+
+        private IEnumerator ResetPowerUpCooldown()
+    {
+        yield return new WaitForSeconds(1f); // Espera 1 segundo
+        puedeActivarPowerUp = true; // Permite activar PowerUp() nuevamente
+    }
 }
+
 
 public enum ToadStatus
 {
