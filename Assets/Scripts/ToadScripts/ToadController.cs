@@ -3,9 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ToadController : MonoBehaviour, IToad
+public class ToadController : MonoBehaviour
 {
-    private float direction;
+    [SerializeField] private float direction;
     private Rigidbody2D rb;
 
     [SerializeField]    private float fuerzaAceleracion = 12f;
@@ -61,16 +61,20 @@ public class ToadController : MonoBehaviour, IToad
         }
 
         ComprobarSuelo();
-        Saltar();
-        if (estaEnSuelo == true)
+        if (muerto == false)
         {
-            Agachado();
+            Saltar();
+
+            if (estaEnSuelo == true)
+            {
+                Agachado();
+            }
         }
     }
 
     private void FixedUpdate()
     {
-        if (this.agachado == false)
+        if (this.agachado == false && this.muerto == false)
         {
             Movimiento();
         }
@@ -227,8 +231,18 @@ public class ToadController : MonoBehaviour, IToad
     {
         muerto = true;
 
+        gameObject.layer = LayerMask.NameToLayer("ToadMuerto");
 
-        
+        // Eliminar todas las fuerzas y detener el movimiento
+        rb.velocity = Vector2.zero;
+        rb.angularVelocity = 0f;
+
+        // Aplicar un pequeño salto (impulso hacia arriba)
+        rb.velocity = new Vector2(0, 5f); // Puedes ajustar el valor 5f según necesites
+
+        // Restaurar la gravedad para que caiga después del impulso
+        rb.gravityScale = 2f; // Ajusta según la gravedad normal del juego
+
     }
 
 }

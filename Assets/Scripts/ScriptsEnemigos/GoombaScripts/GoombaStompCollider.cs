@@ -7,10 +7,13 @@ public class GoombaStompCollider : MonoBehaviour, IEnemigos
 {
     private GameObject goombaPadre;
     private Rigidbody2D rbGoomba;
-    private Collider2D colliderGoomba;
-    private SpriteRenderer spriteRenderer;
     private MovimientoEnemigos movimiento;
     private Animator animator;
+
+    [SerializeField]
+    private GameObject goombaDeathCollider;
+
+    private Collider2D colliderStomp;
 
     public bool muerto = false;
 
@@ -20,10 +23,10 @@ public class GoombaStompCollider : MonoBehaviour, IEnemigos
     {
         goombaPadre = transform.parent.gameObject; // Referencia al padre (Goomba)
         rbGoomba = goombaPadre.GetComponent<Rigidbody2D>();
-        colliderGoomba = goombaPadre.GetComponent<Collider2D>();
-        spriteRenderer = goombaPadre.GetComponent<SpriteRenderer>();
         movimiento = goombaPadre.GetComponent<MovimientoEnemigos>();
         animator = goombaPadre.GetComponent<Animator>();
+
+        colliderStomp = GetComponent<Collider2D>();
     }
 
     // Método de la interfaz IEnemigos
@@ -37,8 +40,9 @@ public class GoombaStompCollider : MonoBehaviour, IEnemigos
     {
         // Detener el movimiento del Goomba
         movimiento.Pausa();
-        colliderGoomba.enabled = false; // Desactivar la colisión
+        colliderStomp.enabled = false; // Desactivar la colisión
         rbGoomba.bodyType = RigidbodyType2D.Static;
+        goombaDeathCollider.SetActive(false);
 
         // Aplastar visualmente al Goomba
         muerto = true;

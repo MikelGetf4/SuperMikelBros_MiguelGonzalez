@@ -23,19 +23,24 @@ public class ToadAnimator : MonoBehaviour
 
     private void LateUpdate()
     {
-        this.animator.SetFloat("VelocidadX", Mathf.Abs(this.rb.velocity.x));
-        this.animator.SetFloat("VelocidadY", this.rb.velocity.y);
-        animator.SetBool("EnSuelo", toadController.estaEnSuelo);
-        animator.SetBool("Agachado", toadController.agachado);
         animator.SetBool("Muerto", toadController.muerto);
 
-        if (direction != 0 && Mathf.Sign(direction) != Mathf.Sign(rb.velocity.x))
+        if (toadController.muerto == false)
         {
-            this.animator.SetBool("Sliding", true);
-        }
-        else
-        {
-            this.animator.SetBool("Sliding", false);
+            this.animator.SetFloat("VelocidadX", Mathf.Abs(this.rb.velocity.x));
+            this.animator.SetFloat("VelocidadY", this.rb.velocity.y);
+            animator.SetBool("EnSuelo", toadController.estaEnSuelo);
+            animator.SetBool("Agachado", toadController.agachado);
+
+
+            if (direction != 0 && Mathf.Sign(direction) != Mathf.Sign(rb.velocity.x))
+            {
+                this.animator.SetBool("Sliding", true);
+            }
+            else
+            {
+                this.animator.SetBool("Sliding", false);
+            }
         }
     }
 }

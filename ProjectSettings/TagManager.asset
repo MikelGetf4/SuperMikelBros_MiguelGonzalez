@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Suelo
+  - Muerte
   layers:
   - Default
   - TransparentFX
@@ -17,7 +18,7 @@ TagManager:
   - Stomp
   - Enemigos
   - LimiteCamara
-  - 
+  - ToadMuerto
   - 
   - 
   - 

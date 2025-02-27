@@ -6,6 +6,7 @@ using UnityEngine;
 public class Stomp : MonoBehaviour
 {
     private Rigidbody2D rbToad;
+    private ToadController toadController;
 
     [SerializeField] private float fuerzaSalto = 5f;
 
@@ -16,6 +17,16 @@ public class Stomp : MonoBehaviour
         if (rbToad == null)
         {
             Debug.Log("No encuentra el rb");
+        }
+
+        toadController = GetComponentInParent<ToadController>();
+    }
+
+    private void FixedUpdate()
+    {
+        if (toadController.muerto == true)
+        {
+            gameObject.layer = LayerMask.NameToLayer("ToadMuerto");
         }
     }
 
