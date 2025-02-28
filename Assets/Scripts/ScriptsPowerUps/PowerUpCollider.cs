@@ -5,8 +5,6 @@ using UnityEngine;
 
 public class PowerUpCollider : MonoBehaviour, IPowerUp
 {
-    [SerializeField]
-    GameObject Toad;
     private GameObject PowerUpPadre;
     public PowerUpCorresponde EsPowerUp;
 
@@ -17,9 +15,10 @@ public class PowerUpCollider : MonoBehaviour, IPowerUp
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player"))
+        var JugadorChocado = collision.GetComponent<ToadController>();
+        if (JugadorChocado != null)
         {
-            Activate();
+            Activate(collision.gameObject);
         }
     }
 
@@ -40,11 +39,12 @@ public class PowerUpCollider : MonoBehaviour, IPowerUp
     }
 
 
-    public void Activate()
+    public void Activate(GameObject objetoCoisionado)
     {
-        if (Toad != null) // Evitar NullReferenceException
+        var JugadorChocado = objetoCoisionado.GetComponent<ToadController>();
+        if (JugadorChocado != null) // Evitar NullReferenceException
         {
-            var toadController = Toad.GetComponent<ToadController>();
+            var toadController = JugadorChocado.GetComponent<ToadController>();
             if (toadController != null)
             {
                 Destroy(gameObject);

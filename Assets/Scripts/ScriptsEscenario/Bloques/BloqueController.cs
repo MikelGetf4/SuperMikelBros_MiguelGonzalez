@@ -9,7 +9,7 @@ public class BloqueController : MonoBehaviour, IBloque
 
     public virtual void Hit()
     {
-        Debug.Log("Mario ha chocado");
+        Debug.Log("Toad ha chocado");
 
         if (isBouncing == false)
         {

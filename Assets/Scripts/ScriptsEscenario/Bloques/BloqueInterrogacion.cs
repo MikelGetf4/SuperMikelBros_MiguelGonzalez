@@ -18,11 +18,29 @@ public class BloqueInterrogacion : BloqueController, IBloque
         animator = GetComponent<Animator>();
     }
 
+
     public override void Hit()
     {
         if (!golpeado)
         {
             golpeado = true;
+            
+
+
+            ToadController jugador = FindObjectOfType<ToadController>();
+
+            if (jugador != null && dentroBloque != DentroBloque.OneUp && dentroBloque != DentroBloque.Moneda)
+            {
+                if (jugador.estado == ToadStatus.Small)
+                {
+                    dentroBloque = DentroBloque.Seta;
+                }
+                else
+                {
+                    dentroBloque = DentroBloque.Flor;
+                }
+            }
+
             GenerarObjeto();
             animator.SetTrigger("Golpeado");
         }
@@ -54,13 +72,21 @@ public class BloqueInterrogacion : BloqueController, IBloque
         {
             // Obtiene el tamaño del bloque para calcular la posición dentro del bloque (un poco hacia abajo del borde superior)
             float alturaBloque = GetComponent<Collider2D>().bounds.size.y;
-            Vector3 posicionDentroDelBloque = transform.position + new Vector3(0, alturaBloque - 1.5f, 0); // Instanciar justo dentro del bloque
+            Vector3 posicionDentroDelBloque = transform.position + new Vector3(0, alturaBloque - 1f, 1); // Instanciar justo dentro del bloque
 
             // Instancia el objeto dentro del bloque
             GameObject powerUp = Instantiate(prefabAInstanciar, posicionDentroDelBloque, Quaternion.identity);
 
-            // Llama a la corrutina para mover el power-up hacia arriba lentamente
-            StartCoroutine(MoverSetaArriba(powerUp));
+            if(dentroBloque == DentroBloque.Moneda)
+            {
+                StartCoroutine(MoverMonedaArriba(powerUp));
+            }
+            else
+            {
+                // Llama a la corrutina para mover el power-up hacia arriba lentamente
+                StartCoroutine(MoverObjetoArriba(powerUp));
+            }
+            
         }
         else
         {
@@ -68,11 +94,11 @@ public class BloqueInterrogacion : BloqueController, IBloque
         }
     }
 
-    private IEnumerator MoverSetaArriba(GameObject powerUp)
+    private IEnumerator MoverObjetoArriba(GameObject powerUp)
     {
         // La distancia máxima que la seta debe subir
-        float distanciaSubida = 1.0f; // Ajusta esta distancia según lo necesites
-        float tiempoSubida = 1f; // Tiempo que tarda en subir (1 segundo)
+        float distanciaSubida = 0.5f; // Ajusta esta distancia según lo necesites
+        float tiempoSubida = 0.6f; // Tiempo que tarda en subir (1 segundo)
         Vector3 posicionInicial = powerUp.transform.position;
         Vector3 posicionFinal = posicionInicial + new Vector3(0, distanciaSubida, 0); // Mueve hacia arriba
 
@@ -88,6 +114,43 @@ public class BloqueInterrogacion : BloqueController, IBloque
 
         // Asegura que se coloque en la posición final
         powerUp.transform.position = posicionFinal;
+    }
+
+    private IEnumerator MoverMonedaArriba(GameObject moneda)
+    {
+        float alturaSubida = 2.5f;  // Cuánto sube la moneda
+        float alturaBajada = 0.5f;  // Cuánto baja antes de desaparecer
+        float tiempoSubida = 0.3f;  // Tiempo rápido para subir
+        float tiempoBajada = 0.2f;  // Tiempo para bajar un poco
+
+        Vector3 posicionInicial = moneda.transform.position;
+        Vector3 posicionFinalSubida = posicionInicial + new Vector3(0, alturaSubida, 0);
+        Vector3 posicionFinalBajada = posicionFinalSubida - new Vector3(0, alturaBajada, 0);
+
+        float tiempoTranscurrido = 0f;
+
+        // 1. Movimiento hacia arriba
+        while (tiempoTranscurrido < tiempoSubida)
+        {
+            moneda.transform.position = Vector3.Lerp(posicionInicial, posicionFinalSubida, tiempoTranscurrido / tiempoSubida);
+            tiempoTranscurrido += Time.deltaTime;
+            yield return null;
+        }
+        moneda.transform.position = posicionFinalSubida;
+
+        // 2. Pequeña bajada
+        tiempoTranscurrido = 0f;
+        while (tiempoTranscurrido < tiempoBajada)
+        {
+            moneda.transform.position = Vector3.Lerp(posicionFinalSubida, posicionFinalBajada, tiempoTranscurrido / tiempoBajada);
+            tiempoTranscurrido += Time.deltaTime;
+            yield return null;
+        }
+        moneda.transform.position = posicionFinalBajada;
+
+        // 3. Destruir moneda después de un pequeño retraso
+        yield return new WaitForSeconds(0.1f);
+        Destroy(moneda);
     }
 }
 

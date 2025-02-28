@@ -23,7 +23,7 @@ public class BloqueRomper : BloqueController, IBloque
     {
         ToadController toad = FindObjectOfType<ToadController>();
 
-        if (toad != null && toad.estado == ToadStatus.Mushroom)
+        if (toad != null && toad.estado != ToadStatus.Small)
 
         {
             Debug.Log("RomperBloque");
