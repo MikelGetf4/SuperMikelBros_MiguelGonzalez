@@ -31,13 +31,20 @@ public class ToadController : MonoBehaviour
 
     public ToadStatus estado;
     private SpriteRenderer spriteRenderer;
+    private Animator animator;
     private bool puedeActivarPowerUp = true;
 
+    private bool invulnerable = false;
+    private int statusAnimator = 0;
+    private float lastDamageTime = 0f;
+    private float invulnerabilityDuration = 2f;
+    private float blinkRate = 0.1f;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         spriteRenderer = rb.GetComponent<SpriteRenderer>();
+        animator = rb.GetComponent<Animator>();
     }
 
     private void Start()
@@ -48,18 +55,22 @@ public class ToadController : MonoBehaviour
 
     private void Update()
     {
+        animator.SetInteger("Status", statusAnimator);
         switch (this.estado)
         {
             case ToadStatus.Small:
                 spriteRenderer.color = Color.green;
+                statusAnimator = 0;
                 break;
 
             case ToadStatus.Mushroom:
                 spriteRenderer.color = Color.blue;
+                statusAnimator = 1;
                 break;
 
             case ToadStatus.Flower:
                 spriteRenderer.color = Color.red;
+                statusAnimator = 2;
                 break;
         }
 
@@ -231,19 +242,45 @@ public class ToadController : MonoBehaviour
 
     public void Damagable()
     {
-        switch (this.estado)
+        if (!invulnerable)
         {
-            case ToadStatus.Small:
-                Debug.Log("Toad... ha muerto");
-                Death();
-                break;
-            case ToadStatus.Mushroom:
-                estado = ToadStatus.Mushroom;
-                break;
-            case ToadStatus.Flower:
-                estado = ToadStatus.Mushroom;
-                break;
+            StartCoroutine(InvulnerabilityCooldown()); // Inicia la corrutina de invulnerabilidad
+
+            animator.SetTrigger("StatusChange");
+
+            switch (this.estado)
+            {
+                case ToadStatus.Small:
+                    Debug.Log("Toad... ha muerto");
+                    Death();
+                    break;
+                case ToadStatus.Mushroom:
+                    estado = ToadStatus.Small;
+                    break;
+                case ToadStatus.Flower:
+                    estado = ToadStatus.Mushroom;
+                    break;
+            }
         }
+    }
+
+    private IEnumerator InvulnerabilityCooldown()
+    {
+        invulnerable = true;  // Activa la invulnerabilidad
+
+        float timePassed = 0f;
+        if (estado != ToadStatus.Small)
+        {
+            while (timePassed < invulnerabilityDuration)
+            {
+                spriteRenderer.enabled = !spriteRenderer.enabled; // Alterna la visibilidad del SpriteRenderer
+                timePassed += blinkRate; // Incrementa el tiempo transcurrido por el ritmo del parpadeo
+                yield return new WaitForSeconds(blinkRate); // Espera un tiempo para el siguiente parpadeo
+            }
+        }
+
+            spriteRenderer.enabled = true; // Asegúrate de que el sprite esté visible después de la invulnerabilidad
+        invulnerable = false; // Desactiva la invulnerabilidad
     }
 
     private void Death()
@@ -263,32 +300,23 @@ public class ToadController : MonoBehaviour
         rb.gravityScale = 2f; // Ajusta según la gravedad normal del juego
 
     }
-    public void PowerUp()
+
+
+    public void PowerUpSeta()
     {
-        if (!puedeActivarPowerUp) return; // Evita que se active antes de 1 segundo
-
-        puedeActivarPowerUp = false; // Desactiva la activación temporalmente
-        StartCoroutine(ResetPowerUpCooldown()); // Inicia el cooldown
-
-        switch (this.estado)
-        {
-            case ToadStatus.Small:
-                this.estado = ToadStatus.Mushroom;
-                Debug.Log("Ahora eres grande");
-                break;
-            case ToadStatus.Mushroom:
-                this.estado = ToadStatus.Flower;
-                Debug.Log("Ahora eres de fuego");
-                break;
-            case ToadStatus.Flower:
-                break;
-        }
+        Debug.Log("Mario ha cogido la seta");
+        this.estado = ToadStatus.Mushroom;
+        animator.SetTrigger("StatusChange");
     }
-
-        private IEnumerator ResetPowerUpCooldown()
+    public void PowerUpFlor()
     {
-        yield return new WaitForSeconds(1f); // Espera 1 segundo
-        puedeActivarPowerUp = true; // Permite activar PowerUp() nuevamente
+        Debug.Log("Mario ha cogido la flor");
+        this.estado = ToadStatus.Flower;
+        animator.SetTrigger("StatusChange");
+    }
+    public void PowerUpOneUp()
+    {
+        Debug.Log("Mario ha cogido el OneUp");
     }
 }
 

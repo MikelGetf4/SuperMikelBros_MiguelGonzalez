@@ -21,25 +21,17 @@ public class BloqueRomper : BloqueController, IBloque
 
     public override void Hit()
     {
-        Debug.Log("Hola");
         ToadController toad = FindObjectOfType<ToadController>();
-
-        if (toad != null)
-
-        {
-            Debug.Log("SeHaEncontrado a Toad");
-        }
 
         if (toad != null && toad.estado == ToadStatus.Mushroom)
 
         {
-            Debug.Log("Funciono bien");
+            Debug.Log("RomperBloque");
             RomperBloque();
         }
 
         else
         {
-            Debug.Log("No funciono");
             base.Hit();
         }
     }

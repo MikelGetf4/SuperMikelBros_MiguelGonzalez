@@ -25,7 +25,7 @@ public class BloqueController : MonoBehaviour, IBloque
 
 
         Vector2 startPosition = this.transform.position;
-        Vector2 endPosition = (Vector2)this.transform.position + (Vector2.up * 0.5f);
+        Vector2 endPosition = (Vector2)this.transform.position + (Vector2.up * 0.2f);
 
         while (time < duration)
         {

@@ -8,6 +8,7 @@ public class PowerUpCollider : MonoBehaviour, IPowerUp
     [SerializeField]
     GameObject Toad;
     private GameObject PowerUpPadre;
+    public PowerUpCorresponde EsPowerUp;
 
     private void Awake()
     {
@@ -21,7 +22,23 @@ public class PowerUpCollider : MonoBehaviour, IPowerUp
             Activate();
         }
     }
-    
+
+    private void Start()
+    {
+        if (PowerUpPadre.CompareTag("Seta"))
+        {
+            EsPowerUp = PowerUpCorresponde.Seta;
+        }
+        if (PowerUpPadre.CompareTag("Flor"))
+        {
+            EsPowerUp = PowerUpCorresponde.Flor;
+        }
+        if (PowerUpPadre.CompareTag("OneUp"))
+        {
+            EsPowerUp = PowerUpCorresponde.OneUp;
+        }
+    }
+
 
     public void Activate()
     {
@@ -32,8 +49,21 @@ public class PowerUpCollider : MonoBehaviour, IPowerUp
             {
                 Destroy(gameObject);
                 Destroy(PowerUpPadre);
-                toadController.PowerUp();
-                
+                if (EsPowerUp == PowerUpCorresponde.Seta)
+                {
+                    toadController.PowerUpSeta();
+                }
+
+                if (EsPowerUp == PowerUpCorresponde.Flor)
+                {
+                    toadController.PowerUpFlor();
+                }
+
+                if (EsPowerUp == PowerUpCorresponde.OneUp)
+                {
+                    toadController.PowerUpOneUp();
+                }
+
             }
             else
             {
@@ -45,4 +75,11 @@ public class PowerUpCollider : MonoBehaviour, IPowerUp
             Debug.LogWarning("Toad no está asignado en PowerUpCollider.");
         }
     }
+}
+
+public enum PowerUpCorresponde
+{
+    Seta,
+    Flor,
+    OneUp
 }
