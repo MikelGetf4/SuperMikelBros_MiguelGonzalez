@@ -118,6 +118,9 @@ public class BloqueInterrogacion : BloqueController, IBloque
 
     private IEnumerator MoverMonedaArriba(GameObject moneda)
     {
+        GameManager.Instance.AgregarMoneda();
+        GameManager.Instance.AgregarPuntos(200);
+
         float alturaSubida = 2.5f;  // Cuánto sube la moneda
         float alturaBajada = 0.5f;  // Cuánto baja antes de desaparecer
         float tiempoSubida = 0.3f;  // Tiempo rápido para subir

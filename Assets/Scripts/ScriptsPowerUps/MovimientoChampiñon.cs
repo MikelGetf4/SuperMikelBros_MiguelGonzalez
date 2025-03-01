@@ -7,7 +7,7 @@ public class MovimientoChampiñon : MonoBehaviour
 {
     Rigidbody2D rb;
     public float velocidad;
-    private float direccion = 1;
+    private float direccion = -1;
     public bool pause = true;
     private bool isFalling = false;
 

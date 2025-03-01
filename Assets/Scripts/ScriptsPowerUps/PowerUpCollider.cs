@@ -52,16 +52,20 @@ public class PowerUpCollider : MonoBehaviour, IPowerUp
                 if (EsPowerUp == PowerUpCorresponde.Seta)
                 {
                     toadController.PowerUpSeta();
+                    GameManager.Instance.AgregarPuntos(1000);
                 }
 
                 if (EsPowerUp == PowerUpCorresponde.Flor)
                 {
                     toadController.PowerUpFlor();
+                    GameManager.Instance.AgregarPuntos(1000);
                 }
 
                 if (EsPowerUp == PowerUpCorresponde.OneUp)
                 {
                     toadController.PowerUpOneUp();
+                    GameManager.Instance.AgregarPuntos(1000);
+                    GameManager.Instance.AgregarVida();
                 }
 
             }

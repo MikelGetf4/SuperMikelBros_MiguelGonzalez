@@ -301,6 +301,34 @@ public class ToadController : MonoBehaviour
 
     }
 
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Vacio"))
+        {
+            DeathVoid();
+        }
+    }
+
+
+
+    private void DeathVoid()
+    {
+        muerto = true;
+
+        gameObject.layer = LayerMask.NameToLayer("ToadMuerto");
+
+            // Eliminar todas las fuerzas y detener el movimiento
+        rb.velocity = Vector2.zero;
+        rb.angularVelocity = 0f;
+
+        // Aplicar un pequeño salto (impulso hacia arriba)
+        rb.velocity = new Vector2(0, 15f); // Puedes ajustar el valor 5f según necesites
+
+        // Restaurar la gravedad para que caiga después del impulso
+        rb.gravityScale = 3f; // Ajusta según la gravedad normal del juego
+
+    }
+
 
     public void PowerUpSeta()
     {

@@ -9,6 +9,7 @@ TagManager:
   - Seta
   - Flor
   - OneUp
+  - Vacio
   layers:
   - Default
   - TransparentFX
@@ -23,7 +24,7 @@ TagManager:
   - LimiteCamara
   - ToadMuerto
   - "Champi\xF1on"
-  - 
+  - MuerteVacio
   - 
   - 
   - 
