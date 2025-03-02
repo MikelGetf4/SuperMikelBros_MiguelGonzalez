@@ -3,15 +3,14 @@ using UnityEngine.UI;
 
 public class HUDManager : MonoBehaviour
 {
-    public static HUDManager Instance { get; private set; }
+    public static HUDManager Instance { get; private set; } //Instancia el HUD
 
-    [Header("UI Elements")]
     public Text vidasTexto;
     public Text monedasTexto;
     public Text puntajeTexto;
     public Text tiempoTexto;
 
-    private void Awake()
+    private void Awake() //Se asegura de que solo haya un HUD
     {
         if (Instance == null)
         {
@@ -27,10 +26,12 @@ public class HUDManager : MonoBehaviour
         ActualizarHUD();
     }
 
-    // Actualiza todas las estadísticas en el HUD
-    public void ActualizarHUD()
+    public void ActualizarHUD()   // Actualiza todas las variables en el HUD
     {
-        if (GameManager.Instance == null) return;
+        if (GameManager.Instance == null)
+        {
+            return;
+        }
 
         vidasTexto.text = GameManager.Instance.vidas.ToString();
         monedasTexto.text = GameManager.Instance.monedas.ToString();

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Assets.Scripts
 {
-    public interface IBloque
+    public interface IBloque //Interfaz del bloque
     {
         void Hit();
     }

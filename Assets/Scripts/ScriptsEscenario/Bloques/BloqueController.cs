@@ -7,9 +7,8 @@ public class BloqueController : MonoBehaviour, IBloque
 {
     private bool isBouncing = false;
 
-    public virtual void Hit()
+    public virtual void Hit() //Detecta desde la interfaz si Toad ha chocado
     {
-        Debug.Log("Toad ha chocado");
 
         if (isBouncing == false)
         {
@@ -17,7 +16,7 @@ public class BloqueController : MonoBehaviour, IBloque
         }
     }
 
-    private IEnumerator Bouncing()
+    private IEnumerator Bouncing() //Crea la pequeña animacion en la que el bloque da un bote al ser golpeado
     {
         isBouncing = true;
         float time = 0f;

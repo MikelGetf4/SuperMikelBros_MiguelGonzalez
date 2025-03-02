@@ -6,10 +6,11 @@ using System.Threading.Tasks;
 
 namespace Assets.Scripts
 {
+    //Interfaz de los enemigos
     public interface IEnemigos
     {
-        void RecibirDanio();
-        void Activar();
+        void RecibirDanio(); //Reciben daño
+        void Activar(); //Se activan
     }
 }
 

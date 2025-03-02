@@ -7,6 +7,6 @@ public class StartSceneManager : MonoBehaviour
 {
     public void CargarNivel1()
     {
-        SceneManager.LoadScene("Level 1-1");
+        SceneManager.LoadScene("Level 1-1"); //carga el primer nivel
     }
 }

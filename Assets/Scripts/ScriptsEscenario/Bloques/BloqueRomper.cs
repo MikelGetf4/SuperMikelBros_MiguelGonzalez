@@ -6,7 +6,7 @@ using UnityEngine;
 public class BloqueRomper : BloqueController, IBloque
 {
     private Animator animator;
-
+    //Todos los prefabs de los fragmentos
     [SerializeField] private GameObject fragmentoArribaIzquierda;
     [SerializeField] private GameObject fragmentoArribaDerecha;
     [SerializeField] private GameObject fragmentoAbajoIzquierda;
@@ -19,14 +19,13 @@ public class BloqueRomper : BloqueController, IBloque
         animator = GetComponent<Animator>();
     }
 
-    public override void Hit()
+    public override void Hit() //Si Toad es grande, hace que los bloques se rompan y salgan fragmentos volando
     {
         ToadController toad = FindObjectOfType<ToadController>();
 
         if (toad != null && toad.estado != ToadStatus.Small)
 
         {
-            Debug.Log("RomperBloque");
             RomperBloque();
         }
 
@@ -36,7 +35,7 @@ public class BloqueRomper : BloqueController, IBloque
         }
     }
 
-    private void RomperBloque()
+    private void RomperBloque() //Crea los fragmentos del bloque que salen disparados
     {
         CrearFragmento(fragmentoArribaIzquierda, new Vector2(-1, 2));
         CrearFragmento(fragmentoArribaDerecha, new Vector2(1, 2));
@@ -46,7 +45,7 @@ public class BloqueRomper : BloqueController, IBloque
         Destroy(gameObject);
     }
 
-    private void CrearFragmento(GameObject prefab, Vector2 direccion)
+    private void CrearFragmento(GameObject prefab, Vector2 direccion) //Crea individualmente cada fragmento y le da sus propiedades
     {
         GameObject fragmento = Instantiate(prefab, transform.position, Quaternion.identity);
 

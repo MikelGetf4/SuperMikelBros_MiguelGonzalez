@@ -11,7 +11,7 @@ public class KoopaStompCollider : MonoBehaviour, IEnemigos
     {
         koopaController = GetComponentInParent<KoopaController>();
     }
-    public void RecibirDanio()
+    public void RecibirDanio() //Al recibir daño desde la Interfaz IEnemigos, activa la funcion de KoopaColllider TakeDamage()
     {
         if (koopaController != null)
         {

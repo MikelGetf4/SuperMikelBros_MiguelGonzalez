@@ -1,24 +1,26 @@
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    public static GameManager Instance { get; private set; }
+    public static GameManager Instance { get; private set; } //Instancia el Game Manager
 
-    [Header("Game Stats")]
-    public int vidas = 3;
-    public int puntaje = 0;
-    public int monedas = 0;
-    public int nivelActual = 1;
-    public float tiempoMaximo = 300f; // 5 minutos por nivel
-    private float tiempoRestante;
+    public int vidas = 3; //Vidas del jugador
+    public int puntaje = 0; //Puntos del jugador
+    public int monedas = 0; //Monedas del jugador
+    public int nivelActual = 1; //Nivel en el que nos encontramos
+    public float tiempoMaximo = 300f; // Tiempo del jugador
+    private float tiempoRestante; //Tiempo restante
 
-    private ToadController toadController;
+    private int tamaño = 0; //Tamño del Toad
 
-    private void Awake()
+    private ToadController toadController; //Script del Toad
+
+    private void Awake()    // Implementación del Singleton
     {
-        // Implementación del patrón Singleton
+
         if (Instance == null)
         {
             Instance = this;
@@ -32,15 +34,27 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        tiempoRestante = tiempoMaximo;
-        StartCoroutine(ContadorTiempo());
-        SceneManager.sceneLoaded += OnSceneLoaded; // Suscribirse al evento de carga de escena
+        tiempoRestante = tiempoMaximo; //Deja el tiempo en 300 segundos
+        StartCoroutine(ContadorTiempo()); //Comienza la corrutina para que cuente el tiempo 
+        SceneManager.sceneLoaded += OnSceneLoaded; // Evento cuando se carga una nueva escena
+
+        GameObject toadObject = GameObject.Find("Toad"); //Busca a Toad y saca su script controller
+        if (toadObject != null)
+        {
+            toadController = toadObject.GetComponent<ToadController>();
+            Debug.Log("Toad se encontrado en la nueva escena.");
+        }
+        else
+        {
+            Debug.Log("Toad no encontrado en la nueva escena.");
+        }
     }
+
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        // Buscar a Toad en la nueva escena
-        GameObject toadObject = GameObject.Find("Toad");
+        
+        GameObject toadObject = GameObject.Find("Toad"); // Busca a Toad en la escena nueva y saca otra vez su scipt Controller
         if (toadObject != null)
         {
             toadController = toadObject.GetComponent<ToadController>();
@@ -48,75 +62,43 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning("Toad no encontrado en la nueva escena.");
+            Debug.Log("Toad no encontrado en la nueva escena.");
         }
     }
 
-    private void Update()
-    {
-        if (toadController != null)
-        {
-            bool estaMuerto = toadController.muerto; // Cambia "miBool" por el nombre correcto
-            if (estaMuerto == true )
-            {
-                GameOver();
-            }
-        }
-    }
 
-    public void AgregarPuntos(int cantidad)
+    public void AgregarPuntos(int cantidad) //Añade puntos al total de puntos
     {
         puntaje += cantidad;
-        Debug.Log("Puntaje: " + puntaje);
     }
 
-    public void AgregarMoneda()
+    public void AgregarMoneda() //Añade una moneda al total
     {
         monedas++;
-        Debug.Log("Monedas: " + monedas);
     }
 
-    public void AgregarVida()
+    public void AgregarVida() //Añade una vida al total
     {
         vidas++;
-        Debug.Log("¡Vida extra! Vidas: " + vidas);
     }
 
-    public void PerderVida()
+    public void PerderVida() //Resta una vida al total y te manda al GameOver si tienes 0 vidas
     {
         vidas--;
-        Debug.Log("Vidas restantes: " + vidas);
 
         if (vidas <= 0)
         {
             GameOver();
         }
-        else
-        {
-            ReiniciarNivel();
-        }
     }
 
-    public void ReiniciarNivel()
-    {
-        tiempoRestante = tiempoMaximo;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-    }
 
-    public void CargarSiguienteNivel()
+    private void GameOver() //Carga la escena GameOver
     {
-        nivelActual++;
-        tiempoRestante = tiempoMaximo;
-        SceneManager.LoadScene(nivelActual);
-    }
-
-    private void GameOver()
-    {
-        Debug.Log("¡Game Over!");
         SceneManager.LoadScene("GameOverScene");
     }
 
-    private IEnumerator ContadorTiempo()
+    private IEnumerator ContadorTiempo() //Cuenta hacia atras el tiempo. Si el tiempo llega a 0, mata a Toad
     {
         while (tiempoRestante > 0)
         {
@@ -124,12 +106,18 @@ public class GameManager : MonoBehaviour
             yield return null;
         }
 
-        Debug.Log("¡Tiempo agotado!");
-        PerderVida();
+        toadController.Death();
     }
 
-    public float GetTiempoRestante()
+    public float GetTiempoRestante() //Adquiere el tiempo que queda
     {
         return Mathf.Max(0, tiempoRestante);
     }
+
+    public void GuardarTamaño() //Guarda el tamaño de Toad en la escena
+    {
+        toadController.statusAnimator = tamaño;
+    }
+
+
 }

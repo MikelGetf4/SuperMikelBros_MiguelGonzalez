@@ -4,84 +4,78 @@ using UnityEngine;
 
 public class KoopaController : MonoBehaviour
 {
-    private Rigidbody2D rb;
-    private MovimientoEnemigos movimiento;
-    private Animator animator;
-    private SpriteRenderer spriteRenderer;
-    private KoopaStatus status;
+    private Rigidbody2D rb; //Rigibody del Koopa
+    private MovimientoEnemigos movimiento; //Script de movimiento
+    private Animator animator; //Animator
+    public KoopaStatus status; //Estado del Koopa
 
-    public bool caparazon;
-    public bool sleeping;
-    private Coroutine sleepCoroutine;
+    public bool caparazon; //Booleano para decir que esta en el caparazon
+    public bool sleeping; //Booleano para decir que esta durmiendo
+    private Coroutine sleepCoroutine; //Corrutina de dormir
 
-    private Collider2D stompCollider;
-    private Collider2D damageCollider;
+    private Collider2D stompCollider; //Collider hijo para que Toad lo pise
+    private Collider2D damageCollider; //Collider hijo para hacer daño a Toad
 
     private void Awake()
     {
-        rb = GetComponent<Rigidbody2D>();
-        animator = GetComponent<Animator>();
-        movimiento = GetComponent<MovimientoEnemigos>();
-        spriteRenderer = GetComponent<SpriteRenderer>();
+        rb = GetComponent<Rigidbody2D>(); //Recoge el rigibody
+        animator = GetComponent<Animator>(); //Recoge el animator
+        movimiento = GetComponent<MovimientoEnemigos>(); //Recoge el Script MovimientoEnemigos
 
-        // Buscar los colliders en los hijos
+        // Buscar los transforms colliders en los hijos
         Transform stompTransform = transform.Find("KoopaStompCollider");
         Transform damageTransform = transform.Find("KoopaDamageCollider");
 
-        if (stompTransform != null)
-            stompCollider = stompTransform.GetComponent<Collider2D>();
-
-        if (damageTransform != null)
-            damageCollider = damageTransform.GetComponent<Collider2D>();
+        //Coge los colliders de daño y atacar
+        stompCollider = stompTransform.GetComponent<Collider2D>();
+        damageCollider = damageTransform.GetComponent<Collider2D>();
     }
 
     private void Update()
     {
+        // Dependiendo del estado de Koopa, activar o desactivar los colliders
         switch (this.status)
         {
             case KoopaStatus.Walk:
-                spriteRenderer.color = Color.green;
-                SetCollidersActive(true);
+                SetCollidersActive(true); //Si Koopa esta normal, activa los colliders normalmente
                 break;
 
             case KoopaStatus.Sleep:
-                spriteRenderer.color = Color.blue;
-                SetCollidersActive(false);
+                SetCollidersActive(false); //Si Koopa esta durmiendo, desactiva los colliders
                 break;
 
             case KoopaStatus.Slide:
-                spriteRenderer.color = Color.red;
                 break;
         }
     }
 
     private void SetCollidersActive(bool isActive)
     {
-        if (stompCollider != null)
+        // Cambia el estado de activación de los colliders
             stompCollider.enabled = isActive;
-
-        if (damageCollider != null)
             damageCollider.enabled = isActive;
     }
 
     private void FixedUpdate()
     {
+        //Le dice al animator cuando tiene que ponerlo en modo caparzon
         animator.SetBool("Caparazon", caparazon);
     }
 
-    public void TakeDamage()
+    public void TakeDamage() //Cuando recibe daño, su funcion varia dependiendo de su estado
     {
+        GameManager.Instance.AgregarPuntos(200); // Añade puntos al jugador cuando Koopa recibe daño
         switch (this.status)
         {
             case KoopaStatus.Walk:
-                this.sleepCoroutine = StartCoroutine(Sleep());
+                this.sleepCoroutine = StartCoroutine(Sleep()); // Si está caminando, inicia la corutina de dormir
                 break;
 
             case KoopaStatus.Sleep:
-                this.LaunchKoopa();
+                this.LaunchKoopa(); // Si ya está dormido, hacer que se deslice
                 break;
 
-            case KoopaStatus.Slide:
+            case KoopaStatus.Slide: //Si se esta deslizando, lo detiene
                 this.StopKoopa();
                 break;
         }
@@ -89,69 +83,65 @@ public class KoopaController : MonoBehaviour
 
     private IEnumerator Sleep()
     {
-        if (this.status != KoopaStatus.Sleep)
+        if (this.status != KoopaStatus.Sleep) // Si Koopa no está durmiendo, sale de la coroutine
         {
             yield return null;
         }
 
-        this.status = KoopaStatus.Sleep;
-        movimiento.Pausa();
-        Debug.Log("Iniciando Sleep");
+        this.status = KoopaStatus.Sleep; //Marca a Koopa como dormido
+        movimiento.Pausa(); //Pausa su movimiento
 
-        rb.velocity = Vector2.zero;
+        //Detiene todas las fuerzas de la fisica
+        rb.velocity = Vector2.zero; 
         rb.angularVelocity = 0f;
 
-        caparazon = true;
-        sleeping = true;
+        caparazon = true; //Coloca a Koopa en el caparazon (Para el animator)
+        sleeping = true; //Lo marca como durmiendo
 
-        for (int i = 0; i < 5; i++) // 5 segundos de espera
+        for (int i = 0; i < 5; i++) // 5 segundos de espera antes de que el Koopa se despierte
         {
-            Debug.Log("Han pasado " + i + " segundos");
-            yield return new WaitForSeconds(1f); // Espera 1 segundo por iteración
+            yield return new WaitForSeconds(1f);
         }
 
-        Debug.Log("Finalizando Sleep");
-        movimiento.Activar();
+        movimiento.Activar(); //Vuelve a activar su movimiento
         movimiento.velocidad = 2f;
 
-        caparazon = false;
-        sleeping = false;
-        sleepCoroutine = null;
-        this.status = KoopaStatus.Walk;
-        Debug.Log("Iniciando Walk");
+        caparazon = false; //Marca que no esta en su caparazon
+        sleeping = false; //Marca que no esta durmiendo
+        sleepCoroutine = null; //Limpiaa la referencia de la coroutine
+        this.status = KoopaStatus.Walk; // Cambiar estado a caminar
     }
 
     public void LaunchKoopa()
     {
-        if (this.status == KoopaStatus.Sleep)
+        if (this.status == KoopaStatus.Sleep) // Si Koopa esta dormido comienza a deslizarse
         {
             sleeping = false;
-            Debug.Log("Iniciando Slide");
-            // Detener la corutina de sueño si está en curso.
+            // Detiene la corutina de sueño si está en curso
             if (sleepCoroutine != null)
             {
                 StopCoroutine(sleepCoroutine);
-                sleepCoroutine = null;  // Asegúrate de limpiar la referencia de la corutina.
+                sleepCoroutine = null;  //Limpiar la referencia de la corutina
             }
 
-            this.status = KoopaStatus.Slide;
-            movimiento.velocidad = 8f;
-            movimiento.Activar();
+            this.status = KoopaStatus.Slide; // Cambiar estado a Slide
+            movimiento.velocidad = 8f; //Le sube ,ucho su velocidad
+            movimiento.Activar(); //Activa el movimiento
 
-            // Llamar a la corutina para activar los colliders después de 1 segundo
+            //Activar los colliders despues de 0.5 segundos
             StartCoroutine(EnableCollidersAfterDelay(0.5f));
         }
     }
 
     private IEnumerator EnableCollidersAfterDelay(float delay)
     {
+        // Espera un tiempo especificado y luego activa los colliders
         yield return new WaitForSeconds(delay);
         SetCollidersActive(true);
     }
 
-    private void StopKoopa()
+    private void StopKoopa() // Detener el movimiento del Koopa y lo vuelve a dormir
     {
-        Debug.Log("Parando Slide");
         movimiento.Pausa();
 
         this.status = KoopaStatus.Sleep;
@@ -161,22 +151,19 @@ public class KoopaController : MonoBehaviour
         StartCoroutine(EnableCollidersAfterDelay(0.5f));
     }
 
-    // Método que detecta si Mario salta encima del Koopa
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnCollisionEnter2D(Collision2D collision) //Detecta si Toad lo golpeo y para el caparazon
     {
-        if (collision.gameObject.CompareTag("Player"))  // Asegúrate de que Mario tenga el tag "Player"
+        if (collision.gameObject.CompareTag("Player"))
         {
-            // Verificar si el Koopa está en estado 'Slide' y si Mario lo golpeó desde arriba
-            if (this.status == KoopaStatus.Slide && collision.contacts[0].normal.y > 0.5f)
+            if (this.status == KoopaStatus.Slide)
             {
-                // Si Mario lo golpea desde arriba, cambiar a 'Sleep'
                 StopKoopa();
             }
         }
     }
 }
 
-public enum KoopaStatus
+public enum KoopaStatus //Estado del Koopa
 {
     Walk,
     Sleep,
