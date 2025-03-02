@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class MovimientoChampiñon : MonoBehaviour
 {
+
+    //IGUAL QUE MOVIMIENTO ENEMIGOS, PERO EL COMPONENTE ACTIVATE NO SE USA
     Rigidbody2D rb;
     public float velocidad;
     private float direccion = -1;

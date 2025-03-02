@@ -24,7 +24,7 @@ public class Stomp : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (toadController.muerto == true)
+        if (toadController.muerto == true) //Si Toad esta muerto, el GameObject pasa a la capa ToadMuerto
         {
             gameObject.layer = LayerMask.NameToLayer("ToadMuerto");
         }

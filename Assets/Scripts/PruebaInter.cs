@@ -5,6 +5,11 @@ using UnityEngine;
 
 public class PruebaInter : MonoBehaviour, IEnemigos
 {
+    //IGNORAR, PRUEBA PARA ENEMIGOS
+
+
+
+
     // Implementación del método RecibirDanio()
     public void RecibirDanio()
     {
